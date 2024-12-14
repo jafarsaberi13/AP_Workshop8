@@ -1,4 +1,12 @@
+/**
+ * The Note class provides a console-based application for managing notes.
+ * Users can add, remove, list, export, and view encrypted notes stored in files.
+ * It includes features like folder management, date tracking, and file encryption.
+ */
 public class Note {
+    /**
+     * Displays the main menu options to the user.
+     */
     public static void menu() {
         System.out.println("1: Add");
         System.out.println("2: Romove");
@@ -6,6 +14,9 @@ public class Note {
         System.out.println("4: Export");
         System.out.println("5: Exit");
     }
+    /**
+     * Creates the required directories and a date-tracking file if they don't already exist.
+     */
     static void makeFolder() {
         Path path = Paths.get("Passwords");
         Path path1 = Paths.get("Notes");
@@ -28,6 +39,12 @@ public class Note {
             i.printStackTrace();
         }
     }
+    /**
+     * Saves the current date and a provided note name into a map and serializes it to a file.
+     *
+     * @param map  The HashMap storing note names and their creation dates.
+     * @param name The name of the note to be saved.
+     */
     static void saveDate(HashMap<String, String> map, String name) {
         LocalDate date = LocalDate.now();
         map.put(name, "" + date);
@@ -46,6 +63,11 @@ public class Note {
             ioException.printStackTrace();
         }
     }
+    /**
+     * Retrieves a HashMap of note names and their creation dates from the serialized file.
+     *
+     * @return A HashMap containing note names and their corresponding creation dates.
+     */
     static HashMap<String, Object> getDateHashmap() {
         HashMap<String, Object> map = new HashMap<>();
         try {
@@ -61,6 +83,11 @@ public class Note {
         }
         return map;
     }
+    /**
+     * Prints the names of the files in a directory along with their creation dates.
+     *
+     * @param files An array of files to be printed.
+     */
     static void printNameOfFile(File[] files) {
         HashMap<String, Object> dateFile = getDateHashmap();
         File notesFolders = new File("Notes");
@@ -74,6 +101,12 @@ public class Note {
             }
         }
     }
+    /**
+     * The main method that drives the note management application.
+     * Users can interact with the application through a menu-based interface.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> list = new ArrayList<>();
