@@ -61,5 +61,17 @@ public class Note {
         }
         return map;
     }
-    
+    static void printNameOfFile(File[] files) {
+        HashMap<String, Object> dateFile = getDateHashmap();
+        File notesFolders = new File("Notes");
+        int i = 1;
+        if (files != null) {
+            for (File f: files) {
+                String name = f.getName();
+                int tmp = name.indexOf(".");
+                System.out.println((i) + "- " + name.substring(0, tmp) + "\t" + dateFile.get(name));
+                i++;
+            }
+        }
+    }
 }
